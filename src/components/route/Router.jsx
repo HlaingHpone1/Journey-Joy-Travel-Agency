@@ -6,6 +6,9 @@ const Router = () => {
         <BrowserRouter>
             <Routes>
                 <Route path='/'></Route>
+                <Route path='/'></Route>
+                <Route path='/'></Route>
+
             </Routes>
         </BrowserRouter>
     )
