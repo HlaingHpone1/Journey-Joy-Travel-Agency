@@ -8,7 +8,6 @@ const Router = () => {
                 <Route path='/'></Route>
                 <Route path='/'></Route>
                 <Route path='/'></Route>
-
             </Routes>
         </BrowserRouter>
     )

@@ -13,22 +13,22 @@ const Navbar = () => {
                         <div className="l-header__menu">
                             <ul>
                                 <li>
-                                    <Link></Link>
+                                    <Link to="/">Home</Link>
                                 </li>
                                 <li>
-                                    <Link></Link>
+                                    <Link to="/services">Services</Link>
                                 </li>
                                 <li>
-                                    <Link></Link>
+                                    <Link to="about">About us</Link>
                                 </li>
                                 <li>
-                                    <Link></Link>
+                                    <Link to="review">Review</Link>
                                 </li>
                                 <li>
-                                    <Link></Link>
+                                    <Link>Partner</Link>
                                 </li>
                                 <li>
-                                    <Link></Link>
+                                    <Link>Contact us</Link>
                                 </li>
                             </ul>
                         </div>
