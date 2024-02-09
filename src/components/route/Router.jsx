@@ -12,11 +12,6 @@ import Review from '../../pages/Review'
 // import Navbar from '../navBar/Navbar'
 
 export const Router = () => {
-
-    const location = useLocation().pathname;
-    console.log('====================================');
-    console.log(location);
-    console.log('====================================');
     
     return (
         <Routes>
