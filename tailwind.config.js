@@ -10,14 +10,26 @@ export default {
     theme: {
         extend: {
             colors: {
-                primary: "#05445E",
-                secondary: "#189AB4",
-                tertiary: "#D4F1F4",
+                'primary': "#05445E",
+                'secondary': "#189AB4",
+                'tertiary': "#D4F1F4",
+                'nav': 'rgba(5, 68, 94, 0.5)',
+                
             },
             fontFamily: {
                 'Roboto': ['Roboto', 'sans-serif'],
                 'Roboto-Slab': ['Roboto Slab', 'serif'],
             },
+            fontWeight: {
+                'active': 'bold',
+            },
+            
+            maxWidth: {
+                '1240px': '1240px',
+            },
+            opacity: {
+                'active' : '1',
+            }
         },
     },
     plugins: [],
