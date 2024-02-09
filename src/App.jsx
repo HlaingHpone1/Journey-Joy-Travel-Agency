@@ -1,15 +1,15 @@
 import React from "react"
 import Navbar from "./components/navBar/Navbar"
+import Footer from "./components/footer/Footer"
 
 function App() {
 
 	return (
 		<div className="">
-			<h1 className="text-3xl font-Roboto-Slab text-tertiary bg-primary font-bold underline">
-				Hello world!
-			</h1>
 
 			<Navbar />
+			<Footer />
+
 		</div>
 	)
 }
