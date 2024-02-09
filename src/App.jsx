@@ -1,7 +1,6 @@
 import React from "react"
 import Navbar from "./components/navBar/Navbar"
-import Footer from "./components/footer/Footer"
-import {Image} from "./components/img/Image.js"
+import Login from "./components/form/Login"
 
 function App() {
 
@@ -9,9 +8,7 @@ function App() {
 		<div className="">
 
 			<Navbar />
-			<Footer />
-
-			<img src={Image.Register} alt="" />
+			<Login/>
 		</div>
 	)
 }
