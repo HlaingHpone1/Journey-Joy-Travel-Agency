@@ -29,7 +29,10 @@ export default {
             },
             opacity: {
                 'active' : '1',
-            }
+            },
+            backgroundImage: {
+                'gradient': 'linear-gradient(-45deg, rgba(24,154,180,1) 50%, rgba(37,118,152,1) 50%)',
+            },
         },
     },
     plugins: [],

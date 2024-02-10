@@ -1,14 +1,13 @@
 import React from "react"
 import Navbar from "./components/navBar/Navbar"
-import Login from "./components/form/Login"
+import Footer from "./components/footer/Footer"
 
 function App() {
 
 	return (
 		<div className="">
-
 			<Navbar />
-			<Login/>
+			<Footer />
 		</div>
 	)
 }
