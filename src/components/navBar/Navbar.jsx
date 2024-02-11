@@ -20,10 +20,10 @@ const Navbar = () => {
                 <div className="inner-wrap max-w-1240px my-0 mx-auto">
                     <div className="l-header__bar flex justify-between items-center">
                         <div className="l-header__logo">
-                            <Link className='text-4xl font-bold font-Roboto-Slab' to="/">Journey Joy</Link> 
+                            <Link className='text-4xl font-bold font-Roboto-Slab text-white' to="/">Journey Joy</Link> 
                         </div>
                         <div className="l-header__menu">
-                            <ul className='flex gap-5'>
+                            <ul className='flex gap-5 text-white'>
                                 <li>
                                     <Link className='text-xl font-Roboto-Slab transition-all ease-linear duration-150 block opacity-70 hover:opacity-100 hover:font-bold active ' to="/">Home</Link>
                                 </li>
@@ -33,10 +33,10 @@ const Navbar = () => {
                                         isOpen && (
                                             <ul id='drop-down-content' className='absolute bg-white py-3 px-3 rounded-md'>
                                                 <li>
-                                                    <Link className='text-xl font-Roboto-Slab transition-all ease-linear duration-150 block opacity-70 hover:opacity-100 hover:font-bold' to="/tourpackage">Tour Package</Link>
+                                                    <Link className='text-xl text-black font-Roboto-Slab transition-all ease-linear duration-150 block opacity-70 hover:opacity-100 hover:font-bold' to="/tourpackage">Tour Package</Link>
                                                 </li>
                                                 <li>
-                                                    <Link className='text-xl font-Roboto-Slab transition-all ease-linear duration-150 block opacity-70 hover:opacity-100 hover:font-bold' to="/package">Package</Link>
+                                                    <Link className='text-xl text-black font-Roboto-Slab transition-all ease-linear duration-150 block opacity-70 hover:opacity-100 hover:font-bold' to="/package">Package</Link>
                                                 </li>
                                             </ul>
                                         )

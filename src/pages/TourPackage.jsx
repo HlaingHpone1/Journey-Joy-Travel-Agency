@@ -1,3 +1,6 @@
+import { GiCommercialAirplane } from "react-icons/gi";
+import { IoMdBed } from "react-icons/io";
+import { BsStarHalf } from "react-icons/bs";
 import { AiFillStar } from "react-icons/ai";
 import { BiSearch } from "react-icons/bi";
 import { BsFillCalendarWeekFill } from "react-icons/bs";
@@ -7,9 +10,28 @@ import { IoIosArrowDown } from "react-icons/io";
 import React, { useState } from 'react'
 import Banner from '../components/banner/Banner'
 import { Banner as ImgBanner, Image, Package } from "../components/img/Image"
+import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
+import CheckBox from "../components/checkBox/CheckBox";
 
+const getStars = (rating) => {
+    const filledStars = Math.floor(rating);
+    const halfStar = rating % 1 !== 0;
 
-const TourPackage = ({ startPrice, endPrice, onChange }) => {
+    const stars = [];
+    for (let i = 0; i < filledStars; i++) {
+        stars.push(<AiFillStar key={i} className="text-yellow-500 size-6" />);
+    }
+    if (halfStar) {
+        stars.push(<BsStarHalf key={filledStars} className="text-yellow-500 size-6" />);
+    }
+    for (let i = 0; i < 5 - filledStars - (halfStar ? 0 : 1); i++) {
+        stars.push(<AiFillStar key={filledStars + i + 1} className="text-gray-300 size-6" />);
+    }
+
+    return stars;
+};
+
+const TourPackage = () => {
     const [rating, setRating] = useState(0);
     const [adultCount, setAdultCount] = useState(1);
     const [childCount, setChildCount] = useState(0);
@@ -28,7 +50,6 @@ const TourPackage = ({ startPrice, endPrice, onChange }) => {
         { label: 'Summer', value: 'Summer' },
         { label: 'Winter', value: 'Winter' },
         { label: 'Other', value: 'Other' },
-        // Add more options if needed
     ];
 
     const adultOptions = [{ value: 1 }, { value: 2 }, { value: 3 }, { value: 4 }, { value: 5 }];
@@ -48,6 +69,41 @@ const TourPackage = ({ startPrice, endPrice, onChange }) => {
 
     const handleTotalTravelersClick = () => {
         setShowDropdown(!showDropdown);
+    };
+
+    const [selectedScore, setSelectedScore] = useState(null);
+
+    const handleScoreClick = (score) => {
+        setSelectedScore(score);
+    };
+
+    const amenities = [
+        { id: 1, name: 'amenitie1', text: 'Air-Conditioned' },
+        { id: 2, name: 'amenitie2', text: 'Airport Shuttle' },
+        { id: 3, name: 'amenitie3', text: 'Elevator' },
+        { id: 4, name: 'amenitie4', text: 'EV Station' },
+        { id: 5, name: 'amenitie5', text: 'GYM' },
+        { id: 6, name: 'amenitie6', text: 'Parking' },
+        { id: 7, name: 'amenitie7', text: 'Pet Friendly' },
+        { id: 8, name: 'amenitie8', text: 'Pool' },
+        { id: 9, name: 'amenitie9', text: 'Restaurant' },
+        { id: 10, name: 'amenitie10', text: 'Spa' },
+        { id: 11, name: 'amenitie11', text: 'Breakfast' },
+        { id: 12, name: 'amenitie12', text: 'Wi-Fi' },
+        { id: 13, name: 'amenitie13', text: 'Hot Tub' },
+        { id: 14, name: 'amenitie14', text: 'Smoking Room' },
+        { id: 15, name: 'amenitie15', text: 'Golf' },
+    ];
+
+    const [selectedAmenities, setSelectedAmenities] = useState([]);
+
+    const handleCheckboxChange = (e) => {
+        const amenitie = amenities.find((item) => item.name === e.target.name);
+        if (e.target.checked) {
+            setSelectedAmenities([...selectedAmenities, amenitie]);
+        } else {
+            setSelectedAmenities(selectedAmenities.filter((item) => item.id !== amenitie.id));
+        }
     };
 
 
@@ -106,7 +162,7 @@ const TourPackage = ({ startPrice, endPrice, onChange }) => {
                         </div>
                     </div>
                     <div className="package-container grid grid-cols-5">
-                        <div className="side-bar w-[250px] bg-white rounded-lg pb-3 overflow-hidden">
+                        <div className="side-bar w-[250px] h-fit bg-white rounded-lg pb-3 overflow-hidden">
                             <div className="map h-20 flex justify-center items-center mb-3" style={{ background: `url(${Image.MapPackage})` }}>
                                 <button className="bg-white p-2.5 rounded-lg">Go To Map</button>
                             </div>
@@ -114,14 +170,8 @@ const TourPackage = ({ startPrice, endPrice, onChange }) => {
                                 <div className="stop">
                                     <p className="title font-bold text-center text-lg">Stop</p>
                                     <div className="check-list">
-                                        <div className="list">
-                                            <input className="mr-2" type="checkbox" name="airlist" id="airlist" />
-                                            <label htmlFor="airlist">2+ Stop</label>
-                                        </div>
-                                        <div className="list">
-                                            <input className="mr-2" type="checkbox" name="airlist" id="airlist1" />
-                                            <label htmlFor="airlist1">Non Stop</label>
-                                        </div>
+                                        <CheckBox name="airlist" text="2+ Stop" />
+                                        <CheckBox name="airlist1" text="Non Stop" />
                                     </div>
                                 </div>
                                 <div className="hotel">
@@ -140,40 +190,38 @@ const TourPackage = ({ startPrice, endPrice, onChange }) => {
                                 <div className="airlines">
                                     <p className="title font-bold text-center text-lg  mb-3">Air Lines</p>
                                     <div className="check-list">
-                                        <div className="list">
-                                            <input className="mr-2" type="checkbox" name="airline1" id="airline1" />
-                                            <label htmlFor="airline1">Emirates</label>
-                                        </div>
-                                        <div className="list">
-                                            <input className="mr-2" type="checkbox" name="airline2" id="airline2" />
-                                            <label htmlFor="airline2">MAI</label>
-                                        </div>
-                                        <div className="list">
-                                            <input className="mr-2" type="checkbox" name="airline3" id="airline3" />
-                                            <label htmlFor="airline3">Qatar Airways</label>
-                                        </div>
-                                        <div className="list">
-                                            <input className="mr-2" type="checkbox" name="airline4" id="airline4" />
-                                            <label htmlFor="airline4">TMA</label>
-                                        </div>
+                                        <CheckBox name="airline1" text="Emirates" />
+                                        <CheckBox name="airline2" text="MAI" />
+                                        <CheckBox name="airline3" text="Qatar Airways" />
+                                        <CheckBox name="airline4" text="TMA" />
                                     </div>
                                 </div>
                                 <div className="reviewScore">
                                     <p className="title font-bold text-center text-lg  mb-3">Review Score</p>
-
+                                    <div className="review-box flex justify-between">
+                                        <div className={`review outline outline-2 outline-black rounded-lg p-1.5 font-sm font-bold ${selectedScore === 0 ? 'bg-secondary outline-0 outline-transparent' : ''}`} onClick={() => handleScoreClick(0)}>
+                                            0+
+                                        </div>
+                                        <div className={`review outline outline-2 outline-black rounded-lg p-1.5 font-sm font-bold ${selectedScore === 6 ? 'bg-secondary outline-0 outline-transparent' : ''}`} onClick={() => handleScoreClick(6)}>
+                                            6+
+                                        </div>
+                                        <div className={`review outline outline-2 outline-black rounded-lg p-1.5 font-sm font-bold ${selectedScore === 7 ? 'bg-secondary outline-0 outline-transparent' : ''}`} onClick={() => handleScoreClick(7)}>
+                                            7+
+                                        </div>
+                                        <div className={`review outline outline-2 outline-black rounded-lg p-1.5 font-sm font-bold ${selectedScore === 8 ? 'bg-secondary outline-0 outline-transparent' : ''}`} onClick={() => handleScoreClick(8)}>
+                                            8+
+                                        </div>
+                                        <div className={`review outline outline-2 outline-black rounded-lg p-1.5 font-sm font-bold ${selectedScore === 9 ? 'bg-secondary outline-0 outline-transparent' : ''}`} onClick={() => handleScoreClick(9)}>
+                                            9+
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div className="board">
                                     <p className="title font-bold text-center text-lg  mb-3">Board</p>
                                     <div className="check-list">
-                                        <div className="list">
-                                            <input className="mr-2" type="checkbox" name="board" id="board" />
-                                            <label htmlFor="board">Breakfast</label>
-                                        </div>
-                                        <div className="list">
-                                            <input className="mr-2" type="checkbox" name="board1" id="board1" />
-                                            <label htmlFor="board1">Meal included</label>
-                                        </div>
+                                        <CheckBox name="board" text="Breakfast" />
+                                        <CheckBox name="board1" text="Meal included" />
                                     </div>
                                 </div>
                                 <div className="freebies">
@@ -200,65 +248,16 @@ const TourPackage = ({ startPrice, endPrice, onChange }) => {
                                 <div className="amenities">
                                     <p className="title font-bold text-center text-lg  mb-3">Amenities</p>
                                     <div className="check-list">
-                                        <div className="list">
-                                            <input className="mr-2" type="checkbox" name="amenitie1" id="amenitie1" />
-                                            <label htmlFor="amenitie1">Air-Conditioned</label>
-                                        </div>
-                                        <div className="list">
-                                            <input className="mr-2" type="checkbox" name="amenitie2" id="amenitie2" />
-                                            <label htmlFor="amenitie2">Airport Shuttle</label>
-                                        </div>
-                                        <div className="list">
-                                            <input className="mr-2" type="checkbox" name="amenitie3" id="amenitie3" />
-                                            <label htmlFor="amenitie3">Elevator</label>
-                                        </div>
-                                        <div className="list">
-                                            <input className="mr-2" type="checkbox" name="amenitie4" id="amenitie4" />
-                                            <label htmlFor="amenitie4">EV Station</label>
-                                        </div>
-                                        <div className="list">
-                                            <input className="mr-2" type="checkbox" name="amenitie5" id="amenitie5" />
-                                            <label htmlFor="amenitie5">GYM</label>
-                                        </div>
-                                        <div className="list">
-                                            <input className="mr-2" type="checkbox" name="amenitie6" id="amenitie6" />
-                                            <label htmlFor="amenitie6">Kitchen</label>
-                                        </div>
-                                        <div className="list">
-                                            <input className="mr-2" type="checkbox" name="amenitie7" id="amenitie7" />
-                                            <label htmlFor="amenitie7">Parking</label>
-                                        </div>
-                                        <div className="list">
-                                            <input className="mr-2" type="checkbox" name="amenitie8" id="amenitie8" />
-                                            <label htmlFor="amenitie8">Pet Friendly</label>
-                                        </div>
-                                        <div className="list">
-                                            <input className="mr-2" type="checkbox" name="amenitie9" id="amenitie9" />
-                                            <label htmlFor="amenitie9">Pool</label>
-                                        </div>
-                                        <div className="list">
-                                            <input className="mr-2" type="checkbox" name="amenitie10" id="amenitie10" />
-                                            <label htmlFor="amenitie10">Restaurant</label>
-                                        </div>
-                                        <div className="list">
-                                            <input className="mr-2" type="checkbox" name="amenitie11" id="amenitie11" />
-                                            <label htmlFor="amenitie11">Spa</label>
-                                        </div>
-                                        <div className="list">
-                                            <input className="mr-2" type="checkbox" name="amenitie12" id="amenitie12" />
-                                            <label htmlFor="amenitie12">Wi-Fi</label>
-                                        </div>
-                                        <div className="list">
-                                            <input className="mr-2" type="checkbox" name="amenitie13" id="amenitie13" />
-                                            <label htmlFor="amenitie13">Hot Tub</label>
-                                        </div>
-                                        <div className="list">
-                                            <input className="mr-2" type="checkbox" name="amenitie13" id="amenitie13" />
-                                            <label htmlFor="amenitie13">Smoking Room</label>
-                                        </div>
-                                        <div className="list">
-                                            <input className="mr-2" type="checkbox" name="amenitie14" id="amenitie14" />
-                                            <label htmlFor="amenitie14">Golf</label>
+                                        <div>
+                                            {amenities.map((amenitie) => (
+                                                <CheckBox
+                                                    key={amenitie.id}
+                                                    name={amenitie.name}
+                                                    text={amenitie.text}
+                                                    checked={selectedAmenities.some((item) => item.id === amenitie.id)}
+                                                    onChange={handleCheckboxChange}
+                                                />
+                                            ))}
                                         </div>
                                     </div>
                                 </div>
@@ -280,12 +279,310 @@ const TourPackage = ({ startPrice, endPrice, onChange }) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="card rounded-3xl overflow-hidden bg-[#f4f4f4]">
+                            <div className="card rounded-3xl overflow-hidden mb-3.5 shadow-md shadow-neutral-500 bg-[#f4f4f4] flex">
+                                <img className="block" src={Package.Package2} alt="This is Package Photo" />
+                                <div className="card-des ps-3.5 font-Roboto-Slab py-3.5">
+                                    <div className="title flex items-center space-x-3.5 mb-5">
+                                        <div className="capitalize text-2xl font-bold from-location">
+                                            Yangon
+                                        </div>
+                                        <MdOutlineKeyboardDoubleArrowRight className="size-7" />
+                                        <div className="capitalize text-2xl font-bold to-location">bangkok</div>
+                                    </div>
+                                    <div className="stars flex mb-4">
+                                        <AiFillStar className="text-yellow-500 size-6" />
+                                        <AiFillStar className="text-yellow-500 size-6" />
+                                        <AiFillStar className="text-yellow-500 size-6" />
+                                        <AiFillStar className="text-yellow-500 size-6" />
+                                        <BsStarHalf className="text-yellow-500 size-6" />
+                                    </div>
+                                    <div className="flex justify-between w-[475px] items-center pr-14">
+                                        <div className="review flex space-x-3.5">
+                                            <div className="review-point p-1.5 bg-green-700 rounded-lg w-fit font-medium font-Roboto-Slab text-white">
+                                                8.5
+                                            </div>
+                                            <div className="review-text text-xs">
+                                                <div className="review-level font-bold">Excellent</div>
+                                                <div className="review-count">6,515 Reviews</div>
+                                            </div>
+                                        </div>
+                                        <div className="hotel-services">
+                                            <div className="hotel-service flex space-x-2.5">
+                                                <IoMdBed className="size-7" /> <label htmlFor="">Breakfast</label>
+                                            </div>
+                                            <div className="hotel-service flex space-x-2.5">
+                                                <IoMdBed className="size-7" /> <label htmlFor="">Free Wi-Fi</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <GiCommercialAirplane className="size-7" /><p className=" ml-3">6:30 PM <span className="font-bold">Yangon, Terminal 1,</span> 2 Stops</p>
+                                    </div>
+                                    <div className="flight-detail flex items-center">
+                                        <p>See Flight Details</p> <IoIosArrowDown className="size-5" />
+                                    </div>
+                                </div>
+                                <div className="card-price flex flex-col justify-center space-y-12 ps-3 border-s-2 border-gray-300">
+                                    <div className="price-bloc">
+                                        <div className="price font-bold font-Roboto-Slab text-2xl">$ 520</div>
+                                        <div className="total-price text-sm">$4562 Total</div>
+                                    </div>
+                                    <button className="bg-primary text-white p-2.5 rounded-lg" type="button">View Deal</button>
+                                </div>
+                            </div>
+                            <div className="card rounded-3xl overflow-hidden mb-3.5 shadow-md shadow-neutral-500 bg-[#f4f4f4] flex">
+                                <img className="block" src={Package.Package3} alt="This is Package Photo" />
+                                <div className="card-des ps-3.5 font-Roboto-Slab py-3.5">
+                                    <div className="title flex items-center space-x-3.5 mb-5">
+                                        <div className="capitalize text-2xl font-bold from-location">
+                                            Yangon
+                                        </div>
+                                        <MdOutlineKeyboardDoubleArrowRight className="size-7" />
+                                        <div className="capitalize text-2xl font-bold to-location">bangkok</div>
+                                    </div>
+                                    <div className="stars flex mb-4">
+                                        <AiFillStar className="text-yellow-500 size-6" />
+                                        <AiFillStar className="text-yellow-500 size-6" />
+                                        <AiFillStar className="text-yellow-500 size-6" />
+                                        <AiFillStar className="text-yellow-500 size-6" />
+                                        <BsStarHalf className="text-yellow-500 size-6" />
+                                    </div>
+                                    <div className="flex justify-between w-[475px] items-center pr-14">
+                                        <div className="review flex space-x-3.5">
+                                            <div className="review-point p-1.5 bg-green-700 rounded-lg w-fit font-medium font-Roboto-Slab text-white">
+                                                8.5
+                                            </div>
+                                            <div className="review-text text-xs">
+                                                <div className="review-level font-bold">Excellent</div>
+                                                <div className="review-count">6,515 Reviews</div>
+                                            </div>
+                                        </div>
+                                        <div className="hotel-services">
+                                            <div className="hotel-service flex space-x-2.5">
+                                                <IoMdBed className="size-7" /> <label htmlFor="">Breakfast</label>
+                                            </div>
+                                            <div className="hotel-service flex space-x-2.5">
+                                                <IoMdBed className="size-7" /> <label htmlFor="">Free Wi-Fi</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <GiCommercialAirplane className="size-7" /><p className=" ml-3">6:30 PM <span className="font-bold">Yangon, Terminal 1,</span> 2 Stops</p>
+                                    </div>
+                                    <div className="flight-detail flex items-center">
+                                        <p>See Flight Details</p> <IoIosArrowDown className="size-5" />
+                                    </div>
+                                </div>
+                                <div className="card-price flex flex-col justify-center space-y-12 ps-3 border-s-2 border-gray-300">
+                                    <div className="price-bloc">
+                                        <div className="price font-bold font-Roboto-Slab text-2xl">$ 520</div>
+                                        <div className="total-price text-sm">$4562 Total</div>
+                                    </div>
+                                    <button className="bg-primary text-white p-2.5 rounded-lg" type="button">View Deal</button>
+                                </div>
+                            </div>
+                            <div className="card rounded-3xl overflow-hidden mb-3.5 shadow-md shadow-neutral-500 bg-[#f4f4f4] flex">
+                                <img className="block" src={Package.Package4} alt="This is Package Photo" />
+                                <div className="card-des ps-3.5 font-Roboto-Slab py-3.5">
+                                    <div className="title flex items-center space-x-3.5 mb-5">
+                                        <div className="capitalize text-2xl font-bold from-location">
+                                            Yangon
+                                        </div>
+                                        <MdOutlineKeyboardDoubleArrowRight className="size-7" />
+                                        <div className="capitalize text-2xl font-bold to-location">bangkok</div>
+                                    </div>
+                                    <div className="stars flex mb-4">
+                                        <AiFillStar className="text-yellow-500 size-6" />
+                                        <AiFillStar className="text-yellow-500 size-6" />
+                                        <AiFillStar className="text-yellow-500 size-6" />
+                                        <AiFillStar className="text-yellow-500 size-6" />
+                                        <BsStarHalf className="text-yellow-500 size-6" />
+                                    </div>
+                                    <div className="flex justify-between w-[475px] items-center pr-14">
+                                        <div className="review flex space-x-3.5">
+                                            <div className="review-point p-1.5 bg-green-700 rounded-lg w-fit font-medium font-Roboto-Slab text-white">
+                                                8.5
+                                            </div>
+                                            <div className="review-text text-xs">
+                                                <div className="review-level font-bold">Excellent</div>
+                                                <div className="review-count">6,515 Reviews</div>
+                                            </div>
+                                        </div>
+                                        <div className="hotel-services">
+                                            <div className="hotel-service flex space-x-2.5">
+                                                <IoMdBed className="size-7" /> <label htmlFor="">Breakfast</label>
+                                            </div>
+                                            <div className="hotel-service flex space-x-2.5">
+                                                <IoMdBed className="size-7" /> <label htmlFor="">Free Wi-Fi</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <GiCommercialAirplane className="size-7" /><p className=" ml-3">6:30 PM <span className="font-bold">Yangon, Terminal 1,</span> 2 Stops</p>
+                                    </div>
+                                    <div className="flight-detail flex items-center">
+                                        <p>See Flight Details</p> <IoIosArrowDown className="size-5" />
+                                    </div>
+                                </div>
+                                <div className="card-price flex flex-col justify-center space-y-12 ps-3 border-s-2 border-gray-300">
+                                    <div className="price-bloc">
+                                        <div className="price font-bold font-Roboto-Slab text-2xl">$ 520</div>
+                                        <div className="total-price text-sm">$4562 Total</div>
+                                    </div>
+                                    <button className="bg-primary text-white p-2.5 rounded-lg" type="button">View Deal</button>
+                                </div>
+                            </div>
+                            <div className="card rounded-3xl overflow-hidden mb-3.5 shadow-md shadow-neutral-500 bg-[#f4f4f4] flex">
+                                <img className="block" src={Package.Package5} alt="This is Package Photo" />
+                                <div className="card-des ps-3.5 font-Roboto-Slab py-3.5">
+                                    <div className="title flex items-center space-x-3.5 mb-5">
+                                        <div className="capitalize text-2xl font-bold from-location">
+                                            Yangon
+                                        </div>
+                                        <MdOutlineKeyboardDoubleArrowRight className="size-7" />
+                                        <div className="capitalize text-2xl font-bold to-location">bangkok</div>
+                                    </div>
+                                    <div className="stars flex mb-4">
+                                        <AiFillStar className="text-yellow-500 size-6" />
+                                        <AiFillStar className="text-yellow-500 size-6" />
+                                        <AiFillStar className="text-yellow-500 size-6" />
+                                        <AiFillStar className="text-yellow-500 size-6" />
+                                        <BsStarHalf className="text-yellow-500 size-6" />
+                                    </div>
+                                    <div className="flex justify-between w-[475px] items-center pr-14">
+                                        <div className="review flex space-x-3.5">
+                                            <div className="review-point p-1.5 bg-green-700 rounded-lg w-fit font-medium font-Roboto-Slab text-white">
+                                                8.5
+                                            </div>
+                                            <div className="review-text text-xs">
+                                                <div className="review-level font-bold">Excellent</div>
+                                                <div className="review-count">6,515 Reviews</div>
+                                            </div>
+                                        </div>
+                                        <div className="hotel-services">
+                                            <div className="hotel-service flex space-x-2.5">
+                                                <IoMdBed className="size-7" /> <label htmlFor="">Breakfast</label>
+                                            </div>
+                                            <div className="hotel-service flex space-x-2.5">
+                                                <IoMdBed className="size-7" /> <label htmlFor="">Free Wi-Fi</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <GiCommercialAirplane className="size-7" /><p className=" ml-3">6:30 PM <span className="font-bold">Yangon, Terminal 1,</span> 2 Stops</p>
+                                    </div>
+                                    <div className="flight-detail flex items-center">
+                                        <p>See Flight Details</p> <IoIosArrowDown className="size-5" />
+                                    </div>
+                                </div>
+                                <div className="card-price flex flex-col justify-center space-y-12 ps-3 border-s-2 border-gray-300">
+                                    <div className="price-bloc">
+                                        <div className="price font-bold font-Roboto-Slab text-2xl">$ 520</div>
+                                        <div className="total-price text-sm">$4562 Total</div>
+                                    </div>
+                                    <button className="bg-primary text-white p-2.5 rounded-lg" type="button">View Deal</button>
+                                </div>
+                            </div>
+                            <div className="card rounded-3xl overflow-hidden mb-3.5 shadow-md shadow-neutral-500 bg-[#f4f4f4] flex">
+                                <img className="block" src={Package.Package6} alt="This is Package Photo" />
+                                <div className="card-des ps-3.5 font-Roboto-Slab py-3.5">
+                                    <div className="title flex items-center space-x-3.5 mb-5">
+                                        <div className="capitalize text-2xl font-bold from-location">
+                                            Yangon
+                                        </div>
+                                        <MdOutlineKeyboardDoubleArrowRight className="size-7" />
+                                        <div className="capitalize text-2xl font-bold to-location">bangkok</div>
+                                    </div>
+                                    <div className="stars flex mb-4">
+                                        <AiFillStar className="text-yellow-500 size-6" />
+                                        <AiFillStar className="text-yellow-500 size-6" />
+                                        <AiFillStar className="text-yellow-500 size-6" />
+                                        <AiFillStar className="text-yellow-500 size-6" />
+                                        <BsStarHalf className="text-yellow-500 size-6" />
+                                    </div>
+                                    <div className="flex justify-between w-[475px] items-center pr-14">
+                                        <div className="review flex space-x-3.5">
+                                            <div className="review-point p-1.5 bg-green-700 rounded-lg w-fit font-medium font-Roboto-Slab text-white">
+                                                8.5
+                                            </div>
+                                            <div className="review-text text-xs">
+                                                <div className="review-level font-bold">Excellent</div>
+                                                <div className="review-count">6,515 Reviews</div>
+                                            </div>
+                                        </div>
+                                        <div className="hotel-services">
+                                            <div className="hotel-service flex space-x-2.5">
+                                                <IoMdBed className="size-7" /> <label htmlFor="">Breakfast</label>
+                                            </div>
+                                            <div className="hotel-service flex space-x-2.5">
+                                                <IoMdBed className="size-7" /> <label htmlFor="">Free Wi-Fi</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <GiCommercialAirplane className="size-7" /><p className=" ml-3">6:30 PM <span className="font-bold">Yangon, Terminal 1,</span> 2 Stops</p>
+                                    </div>
+                                    <div className="flight-detail flex items-center">
+                                        <p>See Flight Details</p> <IoIosArrowDown className="size-5" />
+                                    </div>
+                                </div>
+                                <div className="card-price flex flex-col justify-center space-y-12 ps-3 border-s-2 border-gray-300">
+                                    <div className="price-bloc">
+                                        <div className="price font-bold font-Roboto-Slab text-2xl">$ 520</div>
+                                        <div className="total-price text-sm">$4562 Total</div>
+                                    </div>
+                                    <button className="bg-primary text-white p-2.5 rounded-lg" type="button">View Deal</button>
+                                </div>
+                            </div>
+                            <div className="card rounded-3xl overflow-hidden mb-3.5 shadow-md shadow-neutral-500 bg-[#f4f4f4] flex">
                                 <img className="block" src={Package.Package1} alt="This is Package Photo" />
-                                <div className="card-des"></div>
-                                <div className="card-price">
-                                    <div className="price">$ 520</div>
-                                    <div className="total-price"></div>
+                                <div className="card-des ps-3.5 font-Roboto-Slab py-3.5">
+                                    <div className="title flex items-center space-x-3.5 mb-5">
+                                        <div className="capitalize text-2xl font-bold from-location">
+                                            Yangon
+                                        </div>
+                                        <MdOutlineKeyboardDoubleArrowRight className="size-7" />
+                                        <div className="capitalize text-2xl font-bold to-location">bangkok</div>
+                                    </div>
+                                    <div className="stars flex mb-4">
+                                        <AiFillStar className="text-yellow-500 size-6" />
+                                        <AiFillStar className="text-yellow-500 size-6" />
+                                        <AiFillStar className="text-yellow-500 size-6" />
+                                        <AiFillStar className="text-yellow-500 size-6" />
+                                        <BsStarHalf className="text-yellow-500 size-6" />
+                                    </div>
+                                    <div className="flex justify-between w-[475px] items-center pr-14">
+                                        <div className="review flex space-x-3.5">
+                                            <div className="review-point p-1.5 bg-green-700 rounded-lg w-fit font-medium font-Roboto-Slab text-white">
+                                                8.5
+                                            </div>
+                                            <div className="review-text text-xs">
+                                                <div className="review-level font-bold">Excellent</div>
+                                                <div className="review-count">6,515 Reviews</div>
+                                            </div>
+                                        </div>
+                                        <div className="hotel-services">
+                                            <div className="hotel-service flex space-x-2.5">
+                                                <IoMdBed className="size-7" /> <label htmlFor="">Breakfast</label>
+                                            </div>
+                                            <div className="hotel-service flex space-x-2.5">
+                                                <IoMdBed className="size-7" /> <label htmlFor="">Free Wi-Fi</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <GiCommercialAirplane className="size-7" /><p className=" ml-3">6:30 PM <span className="font-bold">Yangon, Terminal 1,</span> 2 Stops</p>
+                                    </div>
+                                    <div className="flight-detail flex items-center">
+                                        <p>See Flight Details</p> <IoIosArrowDown className="size-5" />
+                                    </div>
+                                </div>
+                                <div className="card-price flex flex-col justify-center space-y-12 ps-3 border-s-2 border-gray-300">
+                                    <div className="price-bloc">
+                                        <div className="price font-bold font-Roboto-Slab text-2xl">$ 520</div>
+                                        <div className="total-price text-sm">$4562 Total</div>
+                                    </div>
+                                    <button className="bg-primary text-white p-2.5 rounded-lg" type="button">View Deal</button>
                                 </div>
                             </div>
                         </div>
