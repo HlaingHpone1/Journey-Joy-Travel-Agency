@@ -3,16 +3,51 @@ import { BiSearch } from "react-icons/bi";
 import { BsFillCalendarWeekFill } from "react-icons/bs";
 import { GiAirplaneDeparture } from "react-icons/gi";
 import { GiAirplaneArrival } from "react-icons/gi";
+import { IoIosArrowDown } from "react-icons/io";
 import React, { useState } from 'react'
 import Banner from '../components/banner/Banner'
-import { Banner as ImgBanner, Image } from "../components/img/Image"
+import { Banner as ImgBanner, Image, Package } from "../components/img/Image"
 
 
 const TourPackage = ({ startPrice, endPrice, onChange }) => {
     const [rating, setRating] = useState(0);
+    const [adultCount, setAdultCount] = useState(1);
+    const [childCount, setChildCount] = useState(0);
+    const [showDropdown, setShowDropdown] = useState(false);
 
     const handleClick = (starIndex) => {
         setRating(starIndex + 1);
+    };
+
+    const totalTravelers = adultCount + childCount;
+
+    const [selectedOption, setSelectedOption] = useState('Recommended');
+
+    const filterOptions = [
+        { label: 'Recommended', value: 'Recommended' },
+        { label: 'Summer', value: 'Summer' },
+        { label: 'Winter', value: 'Winter' },
+        { label: 'Other', value: 'Other' },
+        // Add more options if needed
+    ];
+
+    const adultOptions = [{ value: 1 }, { value: 2 }, { value: 3 }, { value: 4 }, { value: 5 }];
+    const childOptions = [{ value: 0 }, { value: 1 }, { value: 2 }, { value: 3 }];
+
+    const handleSelectChange = (event) => {
+        setSelectedOption(event.target.value);
+    };
+
+    const handleAdultCountChange = (event) => {
+        setAdultCount(parseInt(event.target.value, 10));
+    };
+
+    const handleChildCountChange = (event) => {
+        setChildCount(parseInt(event.target.value, 10));
+    };
+
+    const handleTotalTravelersClick = () => {
+        setShowDropdown(!showDropdown);
     };
 
 
@@ -21,6 +56,31 @@ const TourPackage = ({ startPrice, endPrice, onChange }) => {
             <Banner image={ImgBanner.Banner4} header="Tour Package" text="Home / Pages / Tour Package" />
             <div className="tour-package pt-9 pb-28 bg-primary">
                 <div className="inner-wrap max-w-1240px m-0 mx-auto ">
+                    <div className="text-white mb-3">
+                        <p className="flex items-center mr-3" onClick={handleTotalTravelersClick}> Travelers {totalTravelers} <IoIosArrowDown /></p>
+                        {showDropdown && (
+                            <div className="traveller-amount bg-gray-900 absolute py-3 px-7 rounded-md">
+                                <label htmlFor="adult-select">Adults:</label>
+                                <select className="bg-transparent focus:outline-none" id="adult-select" value={adultCount} onChange={handleAdultCountChange}>
+                                    {adultOptions.map((option) => (
+                                        <option className="bg-gray-800" key={option.value} value={option.value}>
+                                            {option.value}
+                                        </option>
+                                    ))}
+                                </select>
+
+                                <label htmlFor="child-select">Children:</label>
+                                <select className="bg-transparent focus:outline-none" id="child-select" value={childCount} onChange={handleChildCountChange}>
+                                    {childOptions.map((option) => (
+                                        <option className="bg-gray-800" key={option.value} value={option.value}>
+                                            {option.value}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+
+                        )}
+                    </div>
                     <div className="search-category flex justify-between items-center mb-5">
                         <div className="from-box py-4 flex justify-center items-center  border-b-2 border-black bg-white rounded-[15px] px-5">
                             <GiAirplaneDeparture className="size-9 mr-2 opacity-50 " />
@@ -29,7 +89,7 @@ const TourPackage = ({ startPrice, endPrice, onChange }) => {
 
                         <div className="from-to py-4 flex justify-center items-center  border-b-2 border-black bg-white rounded-[15px] px-5">
                             <GiAirplaneArrival className="size-9 mr-2 opacity-50 " />
-                            <input className="focus:outline-0 text-lg bg-transparent text-black" type="text" placeholder="From" />
+                            <input className="focus:outline-0 text-lg bg-transparent text-black" type="text" placeholder="To" />
                         </div>
 
                         <div className="from-to py-4 flex justify-center items-center  border-b-2 border-black bg-white rounded-[15px] px-5">
@@ -204,8 +264,30 @@ const TourPackage = ({ startPrice, endPrice, onChange }) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="ml-5 cards col-span-4 h-[50vh] bg-gray-500">
-
+                        <div className="ml-5 cards col-span-4">
+                            <div className="card-filter text-white flex justify-between mb-3">
+                                <div className="package-number">438 of 438 Packages</div>
+                                <div className="filter-dropdown">
+                                    <div>
+                                        <label htmlFor="filter-select">Sorted by</label>
+                                        <select className="bg-transparent focus:outline-0 font-bold" id="filter-select" value={selectedOption} onChange={handleSelectChange}>
+                                            {filterOptions.map((option) => (
+                                                <option className="bg-gray-800" key={option.value} value={option.value}>
+                                                    {option.label}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="card rounded-3xl overflow-hidden bg-[#f4f4f4]">
+                                <img className="block" src={Package.Package1} alt="This is Package Photo" />
+                                <div className="card-des"></div>
+                                <div className="card-price">
+                                    <div className="price">$ 520</div>
+                                    <div className="total-price"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
