@@ -1,4 +1,4 @@
-// Import images using ES6 module syntax
+
 import vision from "../../assets/img/vision.png";
 import mission from "../../assets/img/mission.png";
 import img1 from "../../assets/img/IMG1.png";
@@ -13,7 +13,6 @@ import payment1 from "../../assets/img/payment1.png";
 import payment2 from "../../assets/img/payment2.png";
 import mapPackage from "../../assets/img/map.png";
 
-// Define your exported constants using ES6 module syntax
 export const Image = {
     Vision: vision,
     Mission: mission,
@@ -30,19 +29,16 @@ export const Image = {
     MapPackage: mapPackage
 };
 
-// Import user images
 import user1 from "../../assets/img/user/user1.png";
 import user2 from "../../assets/img/user/user2.png";
 import user3 from "../../assets/img/user/user3.png";
 
-// Define exported user constants
 export const User = {
     User1: user1,
     User2: user2,
     User3: user3
 };
 
-// Import partner images
 import airline1 from "../../assets/img/partner/Airline1.png";
 import airline2 from "../../assets/img/partner/Airline2.png";
 import airline3 from "../../assets/img/partner/Airline3.png";
@@ -66,7 +62,6 @@ import restaurant3 from "../../assets/img/partner/Restaurant3.png";
 import restaurant4 from "../../assets/img/partner/Restaurant4.png";
 import restaurant5 from "../../assets/img/partner/Restaurant5.png";
 
-// Define exported partner constants
 export const Partner = {
     Airline1: airline1,
     Airline2: airline2,
@@ -92,7 +87,6 @@ export const Partner = {
     Restaurant5: restaurant5
 };
 
-// Import package images
 import package1 from "../../assets/img/package1.png";
 import package2 from "../../assets/img/package2.png";
 import package3 from "../../assets/img/package3.png";
@@ -100,7 +94,6 @@ import package4 from "../../assets/img/package4.png";
 import package5 from "../../assets/img/package5.png";
 import package6 from "../../assets/img/package6.png";
 
-// Define exported package constants
 export const Package = {
     Package1: package1,
     Package2: package2,
@@ -110,7 +103,6 @@ export const Package = {
     Package6: package6
 };
 
-// Import banner images
 import banner1 from "../../assets/img/banner1.png";
 import banner2 from "../../assets/img/banner2.png";
 import banner3 from "../../assets/img/banner3.png";
@@ -119,7 +111,6 @@ import banner5 from "../../assets/img/banner5.png";
 import banner6 from "../../assets/img/banner6.png";
 import banner7 from "../../assets/img/banner7.png";
 
-// Define exported banner constants
 export const Banner = {
     Banner1: banner1,
     Banner2: banner2,
