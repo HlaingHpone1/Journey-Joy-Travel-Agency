@@ -129,3 +129,12 @@ export const Banner = {
     Banner6: banner6,
     Banner7: banner7
 };
+
+import visa from "../../assets/img/visa.png";
+import tourGuide from "../../assets/img/TourGuide.png";
+import airTicket from "../../assets/img/AirTicket.png";
+export const Icon = {
+    Visa : visa,
+    tourGuide : tourGuide,
+    AirTicket : airTicket,
+}
