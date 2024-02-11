@@ -5,7 +5,7 @@ import Footer from "./components/footer/Footer"
 function App() {
 
 	return (
-		<div className="">
+		<div className="font-Roboto">
 			<Navbar />
 			<Footer />
 		</div>
