@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 
-const Login = () => {
+export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword]= useState("");
   const emailHandler = (e)=>{
@@ -32,5 +32,3 @@ const addHandler = ()=>{
     </div>
   )
 }
-
-export default Login

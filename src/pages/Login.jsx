@@ -3,7 +3,7 @@ import { Image } from '../components/img/Image'
 import { SlSocialInstagram } from "react-icons/sl";
 import { TiSocialTwitter } from "react-icons/ti";
 import { TiSocialFacebook } from "react-icons/ti";
-
+import {Login as LoginForm}  from "../components/form/Login"
 
 
 const Login = () => {
@@ -31,8 +31,8 @@ const Login = () => {
 									<SlSocialInstagram />
 								</div>
 							</div>
-							<Login/>
 							<p>Or</p>
+							<LoginForm />
 							<p>Forgot your password?</p>
 							<p>Don't have an account? <a href="">Register</a></p> 
 						</form>
