@@ -31,24 +31,24 @@ export const Contact = ({ onSubmit }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className='bg-tertiary w-1/2 m-0 mx-auto py-16' onSubmit={handleSubmit}>
             <div className="mb-4">
-                <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">Name:</label>
-                <input type="text" name="name" value={formData.name} onChange={handleChange} className="bg-transparent border-b-2 w-1/2 p-3  focus:outline-0 " placeholder='Name' required />
+                
+                <input type="text" name="name" value={formData.name} onChange={handleChange} className="bg-transparent border-b-2 border-gray-400 w-1/2 p-3  focus:outline-0 " placeholder='Name' required />
             </div>
             <div className="mb-4">
-                <label htmlFor="phone" className="block text-gray-700 text-sm font-bold mb-2">Phone:</label>
-                <input type="tel" name="phone" value={formData.phone} onChange={handleChange} className="bg-transparent border-b-2 w-1/2 p-3  focus:outline-0 " placeholder='Phone' required />
+                
+                <input type="tel" name="phone" value={formData.phone} onChange={handleChange} className="bg-transparent border-b-2 border-gray-400 w-1/2 p-3  focus:outline-0 " placeholder='Phone' required />
             </div>
             <div className="mb-4">
-                <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">Email:</label>
-                <input type="email" name="email" value={formData.email} onChange={handleChange} className="bg-transparent border-b-2 w-1/2 p-3  focus:outline-0 " placeholder='Email' required />
+               
+                <input type="email" name="email" value={formData.email} onChange={handleChange} className="bg-transparent border-b-2 border-gray-400 w-1/2 p-3  focus:outline-0 " placeholder='Email' required />
             </div>
             <div className="mb-4">
-                <label htmlFor="message" className="block text-gray-700 text-sm font-bold mb-2">Message:</label>
-                <textarea name="message" value={formData.message} onChange={handleChange} className="bg-transparent border-b-2 w-1/2 p-3  focus:outline-0 " placeholder='Message' required />
+                
+                <textarea name="message" value={formData.message} onChange={handleChange} className="bg-transparent border-b-2 border-gray-400 w-1/2 p-3  focus:outline-0 " placeholder='Message' required />
             </div>
-            <button type="submit" className="bg-primary hover:bg-secondary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Submit</button>
+            <button type="submit" className="bg-primary hover:bg-secondary text-white transition-colors duration-300 ease-linear font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Submit</button>
         </form>
     );
 };
