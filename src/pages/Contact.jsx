@@ -15,8 +15,8 @@ const Contact = () => {
     <div className="">
       <Banner
         image={ImgBanner.Banner2}
-        header="Package"
-        text="Home / Pages / Package"
+        header="Contact"
+        text="Home / Pages / Contact"
       />
       <div className="bg-primary pt-14">
         <div className="inner-wrap max-w-1240px my-0 mx-auto">
@@ -45,7 +45,7 @@ const Contact = () => {
         </div>
         <div className="mt-8 text-center text-white">
           <h2 className="text-6xl font-bold mb-4">Location</h2>
-          <img src={Image.LocationMap} alt="This is location" />
+          <img src={Image.LocationMap} className="w-full" alt="This is location" />
         </div>
       </div>
     </div>
