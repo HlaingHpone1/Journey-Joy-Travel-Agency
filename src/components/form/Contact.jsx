@@ -31,7 +31,7 @@ export const Contact = ({ onSubmit }) => {
     };
 
     return (
-        <form className='bg-tertiary w-1/2 m-0 mx-auto py-16' onSubmit={handleSubmit}>
+        <form className='bg-tertiary text-black w-1/2 m-0 mx-auto py-16' onSubmit={handleSubmit}>
             <div className="mb-4">
                 
                 <input type="text" name="name" value={formData.name} onChange={handleChange} className="bg-transparent border-b-2 border-gray-400 w-1/2 p-3  focus:outline-0 " placeholder='Name' required />
