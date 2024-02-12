@@ -11,8 +11,8 @@ const Review = () => {
         <>
             <Banner
                 image={ImgBanner.Banner3}
-                header="Package"
-                text="Home / Pages / Package"
+                header="Reviews"
+                text="Home / Pages / Review"
             />
             <div className='review bg-primary'>
                 <div className='inner-wrap max-w-1240px my-0 mx-auto text-center pt-36 pb-12'>
