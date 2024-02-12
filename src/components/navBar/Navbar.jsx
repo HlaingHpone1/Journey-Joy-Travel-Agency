@@ -16,7 +16,7 @@ const Navbar = () => {
     return (
         <BrowserRouter>
         
-            <div className="l-header w-full bg-nav py-5 fixed top-0">
+            <div className="l-header w-full bg-nav py-5 fixed top-0 z-50">
                 <div className="inner-wrap max-w-1240px my-0 mx-auto">
                     <div className="l-header__bar flex justify-between items-center">
                         <div className="l-header__logo">
