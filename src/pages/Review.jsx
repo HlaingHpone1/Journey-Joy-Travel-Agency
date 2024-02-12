@@ -38,8 +38,8 @@ const Review = () => {
                         />
                     </div>
                     <div className='review-slider flex justify-center'>
-                        <IoArrowBackCircleOutline className='size-16 text-tertiary'/>
-                        <IoArrowForwardCircleOutline className='size-16 text-tertiary'/>
+                        <button type='button' ><IoArrowBackCircleOutline className='size-16 text-tertiary'/></button>
+                        <button type='button'><IoArrowForwardCircleOutline className='size-16 text-tertiary'/></button>
                     </div>
                 </div>
             </div>

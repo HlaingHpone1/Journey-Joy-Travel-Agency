@@ -7,3 +7,7 @@ a.active{
 
     opacity: 1;
 }
+
+.about-box:nth-of-type(even){
+    flex-direction: row-reverse;
+}
