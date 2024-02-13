@@ -1,7 +1,15 @@
 import React from 'react'
 import { BiCheck } from "react-icons/bi"; 
+import { useNavigate } from 'react-router-dom';
 
 export const Package = () => {
+	
+	const navgiate =useNavigate();
+	
+	const onclickHandalar = () => {
+		navgiate("/tourpackage")
+	}
+
     return (
         <div className="package mb-16">
 				<div className="inner-wrap max-w-1240px mx-auto my-0">
@@ -74,7 +82,7 @@ export const Package = () => {
 						</div>
 						<div className="package__button grid grid-cols-5 font-medium text-xl text-center text-white grid-flow-row">
 							<div className="col-span-2"></div>
-							<button type="button" className="text-lg bg-secondary py-5">Visit More</button>
+							<button type="button" onClick={onclickHandalar} className="text-lg bg-secondary py-5">Visit More</button>
 							<button type="button" className="text-lg bg-secondary py-5">Visit More</button>
 							<button type="button" className="text-lg bg-secondary py-5">Visit More</button>
 						</div>

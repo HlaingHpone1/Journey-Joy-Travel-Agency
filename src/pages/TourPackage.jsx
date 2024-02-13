@@ -56,8 +56,20 @@ const TourPackage = () => {
     const adultOptions = [{ value: 1 }, { value: 2 }, { value: 3 }, { value: 4 }, { value: 5 }];
     const childOptions = [{ value: 0 }, { value: 1 }, { value: 2 }, { value: 3 }];
 
-    const handleSelectChange = (event) => {
-        setSelectedOption(event.target.value);
+    const handleSelectChange = (e) => {
+        setSelectedOption(e.target.value);
+        // console.log('====================================');
+        // console.log(e.target.value);
+        // console.log('====================================');
+        if (e.target.value != "Recommended") {
+            const filterItems = cardsData.filter((data) => 
+                 data.label === e.target.value
+            )
+            setData(filterItems);
+        }else{
+            setData(cardsData);
+        }
+
     };
 
     const handleAdultCountChange = (event) => {
@@ -117,6 +129,7 @@ const TourPackage = () => {
             reviewCount: "6,515 Reviews",
             services: ["Breakfast", "Free Wi-Fi"],
             flightTime: "6:30 PM Yangon, Terminal 1, 1 Stops",
+            label: "Other",
             price: 520,
         },
         {
@@ -128,6 +141,7 @@ const TourPackage = () => {
             reviewCount: "8,515 Reviews",
             services: ["Breakfast", "Free Wi-Fi"],
             flightTime: "5:30 PM Yangon, Terminal 5, 2 Stops",
+            label: "Winter",
             price: 650,
         },
         {
@@ -139,6 +153,7 @@ const TourPackage = () => {
             reviewCount: "5,015 Reviews",
             services: ["Breakfast", "Free Wi-Fi"],
             flightTime: "7:00 AM Yangon, Terminal 3, 1 Stops",
+            label: "Summer",
             price: 600,
         },
         {
@@ -150,6 +165,7 @@ const TourPackage = () => {
             reviewCount: "10,200 Reviews",
             services: ["Breakfast", "Free Wi-Fi"],
             flightTime: "8:00 PM Yangon, Terminal 4, 2 Stops",
+            label: "Summer",
             price: 800,
         },
         {
@@ -161,6 +177,7 @@ const TourPackage = () => {
             reviewCount: "60,515 Reviews",
             services: ["Breakfast", "Free Wi-Fi"],
             flightTime: "6:00 AM Yangon, Terminal 5, 3 Stops",
+            label: "Summer",
             price: 1500,
         },
         {
@@ -172,9 +189,12 @@ const TourPackage = () => {
             reviewCount: "9,300 Reviews",
             services: ["Breakfast", "Free Wi-Fi"],
             flightTime: "5:30 AM Yangon, Terminal 5, 3 Stops",
+            label: "Winter",
             price: 1300,
         },
     ];
+
+    const [data, setData] = useState(cardsData);
 
     return (
         <div>
@@ -349,7 +369,7 @@ const TourPackage = () => {
                                 </div>
                             </div>
                             <div>
-                                {cardsData.map((card, index) => {
+                                {data.map((card, index) => {
                                     // Calculate review level dynamically
                                     let reviewLevel;
                                     if (card.reviewPoint >= 8.0) {
