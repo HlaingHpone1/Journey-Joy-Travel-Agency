@@ -37,7 +37,7 @@ export const Register = () => {
 
     return (
         <div>
-            <div className='signIn space-y-6'>
+            <div className='signIn space-y-6 mb-5'>
 
                 <div className=" py-4 pl-2 flex items-center bg-white ">
                     <FaUser className="size-8 mr-2 opacity-50" />

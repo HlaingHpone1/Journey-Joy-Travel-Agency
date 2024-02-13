@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+
+import { Routes, Route, Navigate } from 'react-router-dom'
 import Index from '../../pages/Index'
 import TourPackage from '../../pages/TourPackage'
 import Package from '../../pages/Package'
@@ -9,10 +9,10 @@ import Login from '../../pages/Login'
 import Patner from '../../pages/Patner'
 import Register from '../../pages/Register'
 import Review from '../../pages/Review'
-// import Navbar from '../navBar/Navbar'
+import NotFound from '../../pages/NotFound'
 
 export const Router = () => {
-    
+
     return (
         <Routes>
             <Route path='/' element={<Index />} ></Route>
@@ -24,12 +24,14 @@ export const Router = () => {
             <Route path='/contact' element={<Contact />}></Route>
             <Route path='/login' element={<Login />}></Route>
             <Route path='/register' element={<Register />}></Route>
+            <Route path="*" element={<Navigate to="/404" replace />} />
+            <Route path="/404" element={<NotFound />} />
         </Routes>
 
     )
 }
 
 export const getLocationPath = () => {
-    
+
     return location;
 };

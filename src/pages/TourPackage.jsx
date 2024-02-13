@@ -1,7 +1,7 @@
 import { GiCommercialAirplane } from "react-icons/gi";
 import { IoMdBed } from "react-icons/io";
 import { BsStarHalf } from "react-icons/bs";
-import { AiFillStar } from "react-icons/ai";
+// import { AiFillStar } from "react-icons/ai";
 import { BiSearch } from "react-icons/bi";
 import { BsFillCalendarWeekFill } from "react-icons/bs";
 import { GiAirplaneDeparture } from "react-icons/gi";
@@ -12,6 +12,7 @@ import Banner from '../components/banner/Banner'
 import { Banner as ImgBanner, Image, Package } from "../components/img/Image"
 import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 import CheckBox from "../components/checkBox/CheckBox";
+import { AiFillStar, AiOutlineStar, AiTwotoneStar } from 'react-icons/ai';
 
 const getStars = (rating) => {
     const filledStars = Math.floor(rating);
@@ -106,6 +107,74 @@ const TourPackage = () => {
         }
     };
 
+    const cardsData = [
+        {   
+            image: Package.Package2,
+            fromLocation: "Yangon",
+            toLocation: "Bangkok",
+            reviewPoint: "9.5",
+            reviewLevel: "Excellent",
+            reviewCount: "6,515 Reviews",
+            services: ["Breakfast", "Free Wi-Fi"],
+            flightTime: "6:30 PM Yangon, Terminal 1, 1 Stops",
+            price: 520,
+        },
+        {   
+            image: Package.Package1,
+            fromLocation: "Yangon",
+            toLocation: "Tokyo",
+            reviewPoint: "8.5",
+            reviewLevel: "Excellent",
+            reviewCount: "8,515 Reviews",
+            services: ["Breakfast", "Free Wi-Fi"],
+            flightTime: "5:30 PM Yangon, Terminal 5, 2 Stops",
+            price: 650,
+        },
+        {   
+            image: Package.Package3,
+            fromLocation: "Yangon",
+            toLocation: "Hong Kong",
+            reviewPoint: "5.5",
+            reviewLevel: "Good",
+            reviewCount: "5,015 Reviews",
+            services: ["Breakfast", "Free Wi-Fi"],
+            flightTime: "7:00 AM Yangon, Terminal 3, 1 Stops",
+            price: 600,
+        },
+        {   
+            image: Package.Package4,
+            fromLocation: "Yangon",
+            toLocation: "Canada",
+            reviewPoint: "7.0",
+            reviewLevel: "Good",
+            reviewCount: "10,200 Reviews",
+            services: ["Breakfast", "Free Wi-Fi"],
+            flightTime: "8:00 PM Yangon, Terminal 4, 2 Stops",
+            price: 800,
+        },
+        {   
+            image: Package.Package5,
+            fromLocation: "Yangon",
+            toLocation: "Paris",
+            reviewPoint: "6.7",
+            reviewLevel: "Excellent",
+            reviewCount: "60,515 Reviews",
+            services: ["Breakfast", "Free Wi-Fi"],
+            flightTime: "6:00 AM Yangon, Terminal 5, 3 Stops",
+            price: 1500,
+        },
+        {   
+            image: Package.Package6,
+            fromLocation: "Yangon",
+            toLocation: "London",
+            reviewPoint: "9.0",
+            reviewLevel: "Excellent",
+            reviewCount: "9,300 Reviews",
+            services: ["Breakfast", "Free Wi-Fi"],
+            flightTime: "5:30 AM Yangon, Terminal 5, 3 Stops",
+            price: 1300,
+        },
+    ];
 
     return (
         <div>
@@ -164,7 +233,7 @@ const TourPackage = () => {
                     <div className="package-container grid grid-cols-5">
                         <div className="side-bar w-[250px] h-fit bg-white rounded-lg pb-3 overflow-hidden">
                             <div className="map h-20 flex justify-center items-center mb-3" style={{ background: `url(${Image.MapPackage})` }}>
-                                <button className="bg-white p-2.5 rounded-lg">Go To Map</button>
+                                <button className="bg-white p-2.5 rounded-lg hover:bg-secondary hover:text-white transition-colors duration-300 ease-linear">Go To Map</button>
                             </div>
                             <div className="side-inner max-w-[170px] m-0 mx-auto space-y-3 font-Roboto-Slab">
                                 <div className="stop">
@@ -264,327 +333,80 @@ const TourPackage = () => {
                             </div>
                         </div>
                         <div className="ml-5 cards col-span-4">
-                            <div className="card-filter text-white flex justify-between mb-3">
-                                <div className="package-number">438 of 438 Packages</div>
-                                <div className="filter-dropdown">
-                                    <div>
-                                        <label htmlFor="filter-select">Sorted by</label>
-                                        <select className="bg-transparent focus:outline-0 font-bold" id="filter-select" value={selectedOption} onChange={handleSelectChange}>
-                                            {filterOptions.map((option) => (
-                                                <option className="bg-gray-800" key={option.value} value={option.value}>
-                                                    {option.label}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    </div>
-                                </div>
+                            <div>
+                                {cardsData.map((card, index) => {
+                                    // Calculate review level dynamically
+                                    let reviewLevel;
+                                    if (card.reviewPoint >= 8.0) {
+                                        reviewLevel = "Excellent";
+                                    } else if (card.reviewPoint >= 6.0) {
+                                        reviewLevel = "Good";
+                                    } else {
+                                        reviewLevel = "Average";
+                                    }
+
+                                    let fullStars = Math.floor(card.reviewPoint /2);
+                                    let halfStar = card.reviewPoint/2 - fullStars >= 0.5 ? 1 : 0;
+                                    let emptyStars = 5 - fullStars - halfStar;
+
+                                    return (
+                                        <div key={index} className="card rounded-3xl overflow-hidden mb-3.5 shadow-md shadow-neutral-500 bg-[#f4f4f4] flex">
+                                            <img className="block" src={card.image} alt="This is Package Photo" />
+
+                                            <div className="card-des ps-3.5 font-Roboto-Slab py-3.5">
+                                                <div className="title flex items-center space-x-3.5 mb-5">
+                                                    <div className="capitalize text-2xl font-bold from-location">
+                                                        {card.fromLocation}
+                                                    </div>
+                                                    <MdOutlineKeyboardDoubleArrowRight className="size-7" />
+                                                    <div className="capitalize text-2xl font-bold to-location">{card.toLocation}</div>
+                                                </div>
+                                                <div className="stars flex mb-4">
+                                                    {[...Array(fullStars)].map((_, i) => (
+                                                        <AiFillStar key={i} className="text-yellow-500 size-6" />
+                                                    ))}
+                                                    {halfStar === 1 && <BsStarHalf className="text-yellow-500 size-6" />}
+                                                    {[...Array(emptyStars)].map((_, i) => (
+                                                        <AiOutlineStar key={i} className="text-yellow-500 size-6" />
+                                                    ))}
+                                                </div>
+                                                <div className="flex justify-between w-[475px] items-center pr-14">
+                                                    <div className="review flex space-x-3.5">
+                                                        <div className={`review-point p-1.5  rounded-lg w-fit font-medium font-Roboto-Slab text-white ${reviewLevel === 'Excellent' ? 'bg-green-700' : 'bg-black'}`}>
+                                                            {card.reviewPoint}
+                                                        </div>
+                                                        <div className="review-text text-xs">
+                                                            <div className="review-level font-bold">{reviewLevel}</div>
+                                                            <div className="review-count">{card.reviewCount}</div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="hotel-services">
+                                                        {card.services.map((service, i) => (
+                                                            <div key={i} className="hotel-service flex space-x-2.5">
+                                                                <IoMdBed className="size-7" /> <label htmlFor="">{service}</label>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                                <div className="flex items-center">
+                                                    <GiCommercialAirplane className="size-7" /><p className=" ml-3">{card.flightTime}</p>
+                                                </div>
+                                                <div className="flight-detail flex items-center">
+                                                    <p>See Flight Details</p> <IoIosArrowDown className="size-5" />
+                                                </div>
+                                            </div>
+                                            <div className="card-price flex flex-col justify-center space-y-12 ps-3 border-s-2 border-gray-300">
+                                                <div className="price-bloc">
+                                                    <div className="price font-bold font-Roboto-Slab text-2xl">{`$ ${card.price}`}</div>
+                                                    <div className="total-price text-sm">{`$ ${card.price * totalTravelers}`}</div>
+                                                </div>
+                                                <button className="bg-primary text-white p-2.5 rounded-lg" type="button">View Deal</button>
+                                            </div>
+                                        </div>
+                                    );
+                                })}
                             </div>
-                            <div className="card rounded-3xl overflow-hidden mb-3.5 shadow-md shadow-neutral-500 bg-[#f4f4f4] flex">
-                                <img className="block" src={Package.Package2} alt="This is Package Photo" />
-                                <div className="card-des ps-3.5 font-Roboto-Slab py-3.5">
-                                    <div className="title flex items-center space-x-3.5 mb-5">
-                                        <div className="capitalize text-2xl font-bold from-location">
-                                            Yangon
-                                        </div>
-                                        <MdOutlineKeyboardDoubleArrowRight className="size-7" />
-                                        <div className="capitalize text-2xl font-bold to-location">bangkok</div>
-                                    </div>
-                                    <div className="stars flex mb-4">
-                                        <AiFillStar className="text-yellow-500 size-6" />
-                                        <AiFillStar className="text-yellow-500 size-6" />
-                                        <AiFillStar className="text-yellow-500 size-6" />
-                                        <AiFillStar className="text-yellow-500 size-6" />
-                                        <BsStarHalf className="text-yellow-500 size-6" />
-                                    </div>
-                                    <div className="flex justify-between w-[475px] items-center pr-14">
-                                        <div className="review flex space-x-3.5">
-                                            <div className="review-point p-1.5 bg-green-700 rounded-lg w-fit font-medium font-Roboto-Slab text-white">
-                                                8.5
-                                            </div>
-                                            <div className="review-text text-xs">
-                                                <div className="review-level font-bold">Excellent</div>
-                                                <div className="review-count">6,515 Reviews</div>
-                                            </div>
-                                        </div>
-                                        <div className="hotel-services">
-                                            <div className="hotel-service flex space-x-2.5">
-                                                <IoMdBed className="size-7" /> <label htmlFor="">Breakfast</label>
-                                            </div>
-                                            <div className="hotel-service flex space-x-2.5">
-                                                <IoMdBed className="size-7" /> <label htmlFor="">Free Wi-Fi</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center">
-                                        <GiCommercialAirplane className="size-7" /><p className=" ml-3">6:30 PM <span className="font-bold">Yangon, Terminal 1,</span> 2 Stops</p>
-                                    </div>
-                                    <div className="flight-detail flex items-center">
-                                        <p>See Flight Details</p> <IoIosArrowDown className="size-5" />
-                                    </div>
-                                </div>
-                                <div className="card-price flex flex-col justify-center space-y-12 ps-3 border-s-2 border-gray-300">
-                                    <div className="price-bloc">
-                                        <div className="price font-bold font-Roboto-Slab text-2xl">$ 520</div>
-                                        <div className="total-price text-sm">$4562 Total</div>
-                                    </div>
-                                    <button className="bg-primary text-white p-2.5 rounded-lg" type="button">View Deal</button>
-                                </div>
-                            </div>
-                            <div className="card rounded-3xl overflow-hidden mb-3.5 shadow-md shadow-neutral-500 bg-[#f4f4f4] flex">
-                                <img className="block" src={Package.Package3} alt="This is Package Photo" />
-                                <div className="card-des ps-3.5 font-Roboto-Slab py-3.5">
-                                    <div className="title flex items-center space-x-3.5 mb-5">
-                                        <div className="capitalize text-2xl font-bold from-location">
-                                            Yangon
-                                        </div>
-                                        <MdOutlineKeyboardDoubleArrowRight className="size-7" />
-                                        <div className="capitalize text-2xl font-bold to-location">bangkok</div>
-                                    </div>
-                                    <div className="stars flex mb-4">
-                                        <AiFillStar className="text-yellow-500 size-6" />
-                                        <AiFillStar className="text-yellow-500 size-6" />
-                                        <AiFillStar className="text-yellow-500 size-6" />
-                                        <AiFillStar className="text-yellow-500 size-6" />
-                                        <BsStarHalf className="text-yellow-500 size-6" />
-                                    </div>
-                                    <div className="flex justify-between w-[475px] items-center pr-14">
-                                        <div className="review flex space-x-3.5">
-                                            <div className="review-point p-1.5 bg-green-700 rounded-lg w-fit font-medium font-Roboto-Slab text-white">
-                                                8.5
-                                            </div>
-                                            <div className="review-text text-xs">
-                                                <div className="review-level font-bold">Excellent</div>
-                                                <div className="review-count">6,515 Reviews</div>
-                                            </div>
-                                        </div>
-                                        <div className="hotel-services">
-                                            <div className="hotel-service flex space-x-2.5">
-                                                <IoMdBed className="size-7" /> <label htmlFor="">Breakfast</label>
-                                            </div>
-                                            <div className="hotel-service flex space-x-2.5">
-                                                <IoMdBed className="size-7" /> <label htmlFor="">Free Wi-Fi</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center">
-                                        <GiCommercialAirplane className="size-7" /><p className=" ml-3">6:30 PM <span className="font-bold">Yangon, Terminal 1,</span> 2 Stops</p>
-                                    </div>
-                                    <div className="flight-detail flex items-center">
-                                        <p>See Flight Details</p> <IoIosArrowDown className="size-5" />
-                                    </div>
-                                </div>
-                                <div className="card-price flex flex-col justify-center space-y-12 ps-3 border-s-2 border-gray-300">
-                                    <div className="price-bloc">
-                                        <div className="price font-bold font-Roboto-Slab text-2xl">$ 520</div>
-                                        <div className="total-price text-sm">$4562 Total</div>
-                                    </div>
-                                    <button className="bg-primary text-white p-2.5 rounded-lg" type="button">View Deal</button>
-                                </div>
-                            </div>
-                            <div className="card rounded-3xl overflow-hidden mb-3.5 shadow-md shadow-neutral-500 bg-[#f4f4f4] flex">
-                                <img className="block" src={Package.Package4} alt="This is Package Photo" />
-                                <div className="card-des ps-3.5 font-Roboto-Slab py-3.5">
-                                    <div className="title flex items-center space-x-3.5 mb-5">
-                                        <div className="capitalize text-2xl font-bold from-location">
-                                            Yangon
-                                        </div>
-                                        <MdOutlineKeyboardDoubleArrowRight className="size-7" />
-                                        <div className="capitalize text-2xl font-bold to-location">bangkok</div>
-                                    </div>
-                                    <div className="stars flex mb-4">
-                                        <AiFillStar className="text-yellow-500 size-6" />
-                                        <AiFillStar className="text-yellow-500 size-6" />
-                                        <AiFillStar className="text-yellow-500 size-6" />
-                                        <AiFillStar className="text-yellow-500 size-6" />
-                                        <BsStarHalf className="text-yellow-500 size-6" />
-                                    </div>
-                                    <div className="flex justify-between w-[475px] items-center pr-14">
-                                        <div className="review flex space-x-3.5">
-                                            <div className="review-point p-1.5 bg-green-700 rounded-lg w-fit font-medium font-Roboto-Slab text-white">
-                                                8.5
-                                            </div>
-                                            <div className="review-text text-xs">
-                                                <div className="review-level font-bold">Excellent</div>
-                                                <div className="review-count">6,515 Reviews</div>
-                                            </div>
-                                        </div>
-                                        <div className="hotel-services">
-                                            <div className="hotel-service flex space-x-2.5">
-                                                <IoMdBed className="size-7" /> <label htmlFor="">Breakfast</label>
-                                            </div>
-                                            <div className="hotel-service flex space-x-2.5">
-                                                <IoMdBed className="size-7" /> <label htmlFor="">Free Wi-Fi</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center">
-                                        <GiCommercialAirplane className="size-7" /><p className=" ml-3">6:30 PM <span className="font-bold">Yangon, Terminal 1,</span> 2 Stops</p>
-                                    </div>
-                                    <div className="flight-detail flex items-center">
-                                        <p>See Flight Details</p> <IoIosArrowDown className="size-5" />
-                                    </div>
-                                </div>
-                                <div className="card-price flex flex-col justify-center space-y-12 ps-3 border-s-2 border-gray-300">
-                                    <div className="price-bloc">
-                                        <div className="price font-bold font-Roboto-Slab text-2xl">$ 520</div>
-                                        <div className="total-price text-sm">$4562 Total</div>
-                                    </div>
-                                    <button className="bg-primary text-white p-2.5 rounded-lg" type="button">View Deal</button>
-                                </div>
-                            </div>
-                            <div className="card rounded-3xl overflow-hidden mb-3.5 shadow-md shadow-neutral-500 bg-[#f4f4f4] flex">
-                                <img className="block" src={Package.Package5} alt="This is Package Photo" />
-                                <div className="card-des ps-3.5 font-Roboto-Slab py-3.5">
-                                    <div className="title flex items-center space-x-3.5 mb-5">
-                                        <div className="capitalize text-2xl font-bold from-location">
-                                            Yangon
-                                        </div>
-                                        <MdOutlineKeyboardDoubleArrowRight className="size-7" />
-                                        <div className="capitalize text-2xl font-bold to-location">bangkok</div>
-                                    </div>
-                                    <div className="stars flex mb-4">
-                                        <AiFillStar className="text-yellow-500 size-6" />
-                                        <AiFillStar className="text-yellow-500 size-6" />
-                                        <AiFillStar className="text-yellow-500 size-6" />
-                                        <AiFillStar className="text-yellow-500 size-6" />
-                                        <BsStarHalf className="text-yellow-500 size-6" />
-                                    </div>
-                                    <div className="flex justify-between w-[475px] items-center pr-14">
-                                        <div className="review flex space-x-3.5">
-                                            <div className="review-point p-1.5 bg-green-700 rounded-lg w-fit font-medium font-Roboto-Slab text-white">
-                                                8.5
-                                            </div>
-                                            <div className="review-text text-xs">
-                                                <div className="review-level font-bold">Excellent</div>
-                                                <div className="review-count">6,515 Reviews</div>
-                                            </div>
-                                        </div>
-                                        <div className="hotel-services">
-                                            <div className="hotel-service flex space-x-2.5">
-                                                <IoMdBed className="size-7" /> <label htmlFor="">Breakfast</label>
-                                            </div>
-                                            <div className="hotel-service flex space-x-2.5">
-                                                <IoMdBed className="size-7" /> <label htmlFor="">Free Wi-Fi</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center">
-                                        <GiCommercialAirplane className="size-7" /><p className=" ml-3">6:30 PM <span className="font-bold">Yangon, Terminal 1,</span> 2 Stops</p>
-                                    </div>
-                                    <div className="flight-detail flex items-center">
-                                        <p>See Flight Details</p> <IoIosArrowDown className="size-5" />
-                                    </div>
-                                </div>
-                                <div className="card-price flex flex-col justify-center space-y-12 ps-3 border-s-2 border-gray-300">
-                                    <div className="price-bloc">
-                                        <div className="price font-bold font-Roboto-Slab text-2xl">$ 520</div>
-                                        <div className="total-price text-sm">$4562 Total</div>
-                                    </div>
-                                    <button className="bg-primary text-white p-2.5 rounded-lg" type="button">View Deal</button>
-                                </div>
-                            </div>
-                            <div className="card rounded-3xl overflow-hidden mb-3.5 shadow-md shadow-neutral-500 bg-[#f4f4f4] flex">
-                                <img className="block" src={Package.Package6} alt="This is Package Photo" />
-                                <div className="card-des ps-3.5 font-Roboto-Slab py-3.5">
-                                    <div className="title flex items-center space-x-3.5 mb-5">
-                                        <div className="capitalize text-2xl font-bold from-location">
-                                            Yangon
-                                        </div>
-                                        <MdOutlineKeyboardDoubleArrowRight className="size-7" />
-                                        <div className="capitalize text-2xl font-bold to-location">bangkok</div>
-                                    </div>
-                                    <div className="stars flex mb-4">
-                                        <AiFillStar className="text-yellow-500 size-6" />
-                                        <AiFillStar className="text-yellow-500 size-6" />
-                                        <AiFillStar className="text-yellow-500 size-6" />
-                                        <AiFillStar className="text-yellow-500 size-6" />
-                                        <BsStarHalf className="text-yellow-500 size-6" />
-                                    </div>
-                                    <div className="flex justify-between w-[475px] items-center pr-14">
-                                        <div className="review flex space-x-3.5">
-                                            <div className="review-point p-1.5 bg-green-700 rounded-lg w-fit font-medium font-Roboto-Slab text-white">
-                                                8.5
-                                            </div>
-                                            <div className="review-text text-xs">
-                                                <div className="review-level font-bold">Excellent</div>
-                                                <div className="review-count">6,515 Reviews</div>
-                                            </div>
-                                        </div>
-                                        <div className="hotel-services">
-                                            <div className="hotel-service flex space-x-2.5">
-                                                <IoMdBed className="size-7" /> <label htmlFor="">Breakfast</label>
-                                            </div>
-                                            <div className="hotel-service flex space-x-2.5">
-                                                <IoMdBed className="size-7" /> <label htmlFor="">Free Wi-Fi</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center">
-                                        <GiCommercialAirplane className="size-7" /><p className=" ml-3">6:30 PM <span className="font-bold">Yangon, Terminal 1,</span> 2 Stops</p>
-                                    </div>
-                                    <div className="flight-detail flex items-center">
-                                        <p>See Flight Details</p> <IoIosArrowDown className="size-5" />
-                                    </div>
-                                </div>
-                                <div className="card-price flex flex-col justify-center space-y-12 ps-3 border-s-2 border-gray-300">
-                                    <div className="price-bloc">
-                                        <div className="price font-bold font-Roboto-Slab text-2xl">$ 520</div>
-                                        <div className="total-price text-sm">$4562 Total</div>
-                                    </div>
-                                    <button className="bg-primary text-white p-2.5 rounded-lg" type="button">View Deal</button>
-                                </div>
-                            </div>
-                            <div className="card rounded-3xl overflow-hidden mb-3.5 shadow-md shadow-neutral-500 bg-[#f4f4f4] flex">
-                                <img className="block" src={Package.Package1} alt="This is Package Photo" />
-                                <div className="card-des ps-3.5 font-Roboto-Slab py-3.5">
-                                    <div className="title flex items-center space-x-3.5 mb-5">
-                                        <div className="capitalize text-2xl font-bold from-location">
-                                            Yangon
-                                        </div>
-                                        <MdOutlineKeyboardDoubleArrowRight className="size-7" />
-                                        <div className="capitalize text-2xl font-bold to-location">bangkok</div>
-                                    </div>
-                                    <div className="stars flex mb-4">
-                                        <AiFillStar className="text-yellow-500 size-6" />
-                                        <AiFillStar className="text-yellow-500 size-6" />
-                                        <AiFillStar className="text-yellow-500 size-6" />
-                                        <AiFillStar className="text-yellow-500 size-6" />
-                                        <BsStarHalf className="text-yellow-500 size-6" />
-                                    </div>
-                                    <div className="flex justify-between w-[475px] items-center pr-14">
-                                        <div className="review flex space-x-3.5">
-                                            <div className="review-point p-1.5 bg-green-700 rounded-lg w-fit font-medium font-Roboto-Slab text-white">
-                                                8.5
-                                            </div>
-                                            <div className="review-text text-xs">
-                                                <div className="review-level font-bold">Excellent</div>
-                                                <div className="review-count">6,515 Reviews</div>
-                                            </div>
-                                        </div>
-                                        <div className="hotel-services">
-                                            <div className="hotel-service flex space-x-2.5">
-                                                <IoMdBed className="size-7" /> <label htmlFor="">Breakfast</label>
-                                            </div>
-                                            <div className="hotel-service flex space-x-2.5">
-                                                <IoMdBed className="size-7" /> <label htmlFor="">Free Wi-Fi</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center">
-                                        <GiCommercialAirplane className="size-7" /><p className=" ml-3">6:30 PM <span className="font-bold">Yangon, Terminal 1,</span> 2 Stops</p>
-                                    </div>
-                                    <div className="flight-detail flex items-center">
-                                        <p>See Flight Details</p> <IoIosArrowDown className="size-5" />
-                                    </div>
-                                </div>
-                                <div className="card-price flex flex-col justify-center space-y-12 ps-3 border-s-2 border-gray-300">
-                                    <div className="price-bloc">
-                                        <div className="price font-bold font-Roboto-Slab text-2xl">$ 520</div>
-                                        <div className="total-price text-sm">$4562 Total</div>
-                                    </div>
-                                    <button className="bg-primary text-white p-2.5 rounded-lg" type="button">View Deal</button>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>

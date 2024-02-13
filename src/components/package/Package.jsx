@@ -18,9 +18,9 @@ export const Package = () => {
 						</div>
 						<div className="package__des grid grid-cols-5 font-medium text-xl text-center grid-flow-row capitalize">
 							<div className="text-xl py-5 col-span-2 bg-tertiary">3-4 Stars Hotel </div>
-							<div className="text-xl py-5 bg-[#c2dcdf]">6</div>
-							<div className="text-xl py-5 bg-[#c2dcdf]">7</div>
-							<div className="text-xl py-5 bg-[#c2dcdf]">8</div>
+							<div className="text-xl py-5 bg-[#c2dcdf]"><BiCheck className="m-0 mx-auto size-8" /></div>
+							<div className="text-xl py-5 bg-[#c2dcdf]"><BiCheck className="m-0 mx-auto size-8" /></div>
+							<div className="text-xl py-5 bg-[#c2dcdf]"><BiCheck className="m-0 mx-auto size-8" /></div>
 						</div>
 						<div className="package__des grid grid-cols-5 font-medium text-xl text-center grid-flow-row capitalize">
 							<div className="text-xl py-5 col-span-2 bg-[#a1dae0]">Include breakfast , lunch</div>
