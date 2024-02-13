@@ -22,9 +22,9 @@ const Register = () => {
 							<h2 className='text-6xl text-tertiary'>Create Account</h2>
 							<form className='space-y-6' onSubmit={submitHandler}>
 								<div className='socialIcon flex items-center justify-around'>
-									<CgFacebook className="text-black bg-tertiary size-12 rounded-full p-2" />
-									<AiOutlineInstagram className="text-black bg-tertiary size-12 rounded-full p-2" />
-									<AiOutlineTwitter className="text-black bg-tertiary size-12 rounded-full p-2" />
+									<CgFacebook className="text-black bg-tertiary size-12 rounded-full p-2 hover:text-white hover:bg-primary transition-colors duration-300 ease-linear" />
+									<AiOutlineInstagram className="text-black bg-tertiary size-12 rounded-full p-2 hover:text-white hover:bg-primary transition-colors duration-300 ease-linear" />
+									<AiOutlineTwitter className="text-black bg-tertiary size-12 rounded-full p-2 hover:text-white hover:bg-primary transition-colors duration-300 ease-linear" />
 								</div>
 								<p className='text-xl text-tertiary'>Or</p>
 								<RegisterForm />
