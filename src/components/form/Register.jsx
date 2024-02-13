@@ -46,7 +46,7 @@ export const Register = () => {
 
                 <div className="input py-4 pl-2 flex  items-center bg-white">
                     <MdEmail className="size-8 mr-2 opacity-50 " />
-                    <input type='text' className='focus:outline-none text-lg bg-transparent text-black block w-full' placeholder='Email' value={email}
+                    <input type='email' className='focus:outline-none text-lg bg-transparent text-black block w-full' placeholder='Email' value={email}
                         onChange={emailHandler} /><br />
                 </div>
 

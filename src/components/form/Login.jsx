@@ -21,14 +21,12 @@ const addHandler = ()=>{
   }
 }
 
-
-
   return (
     <div>
       <div className='signIn space-y-6 mb-5'>
       <div className="input py-4 pl-2 flex  items-center w-96 bg-white">
         <MdEmail className="size-8 mr-2 opacity-50 "/>
-        <input type='text' className='focus:outline-0 text-lg bg-transparent w-full text-black' placeholder='Email' value={email}
+        <input type='email' className='focus:outline-0 text-lg bg-transparent w-full text-black' placeholder='Email' value={email}
         onChange={emailHandler}/><br/>
       </div>
         
