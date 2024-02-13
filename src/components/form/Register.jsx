@@ -52,12 +52,12 @@ export const Register = () => {
 
                 <div className="input py-4 pl-2 flex items-center bg-white ">
                     <RiLockPasswordFill className="size-8 mr-2 opacity-50 " />
-                    <input type='text' className='focus:outline-none text-lg bg-transparent text-black block w-full' placeholder='Password' value={password} onChange={passwordHandler} /><br />
+                    <input type='password' className='focus:outline-none text-lg bg-transparent text-black block w-full' placeholder='Password' value={password} onChange={passwordHandler} /><br />
                 </div>
 
                 <div className="input py-4 pl-2 flex items-center bg-white ">
                     <RiLockPasswordFill className="size-8 mr-2 opacity-50 " />
-                    <input type='text' className='focus:outline-none text-lg bg-transparent text-black block w-full' placeholder='Comfirm password' value={comfirmpassword} onChange={comfirmpasswordHandler} />
+                    <input type='password' className='focus:outline-none text-lg bg-transparent text-black block w-full' placeholder='Comfirm password' value={comfirmpassword} onChange={comfirmpasswordHandler} />
                 </div>
                 <button type='button' onClick={addHandler} className='text-xl font-Roboto py-3.5 px-16 bg-tertiary rounded-2xl hover:bg-primary transition-colors duration-300 ease-linear hover:text-white'>Submit</button>
 

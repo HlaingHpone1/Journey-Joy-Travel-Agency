@@ -108,7 +108,7 @@ const TourPackage = () => {
     };
 
     const cardsData = [
-        {   
+        {
             image: Package.Package2,
             fromLocation: "Yangon",
             toLocation: "Bangkok",
@@ -119,7 +119,7 @@ const TourPackage = () => {
             flightTime: "6:30 PM Yangon, Terminal 1, 1 Stops",
             price: 520,
         },
-        {   
+        {
             image: Package.Package1,
             fromLocation: "Yangon",
             toLocation: "Tokyo",
@@ -130,7 +130,7 @@ const TourPackage = () => {
             flightTime: "5:30 PM Yangon, Terminal 5, 2 Stops",
             price: 650,
         },
-        {   
+        {
             image: Package.Package3,
             fromLocation: "Yangon",
             toLocation: "Hong Kong",
@@ -141,7 +141,7 @@ const TourPackage = () => {
             flightTime: "7:00 AM Yangon, Terminal 3, 1 Stops",
             price: 600,
         },
-        {   
+        {
             image: Package.Package4,
             fromLocation: "Yangon",
             toLocation: "Canada",
@@ -152,7 +152,7 @@ const TourPackage = () => {
             flightTime: "8:00 PM Yangon, Terminal 4, 2 Stops",
             price: 800,
         },
-        {   
+        {
             image: Package.Package5,
             fromLocation: "Yangon",
             toLocation: "Paris",
@@ -163,7 +163,7 @@ const TourPackage = () => {
             flightTime: "6:00 AM Yangon, Terminal 5, 3 Stops",
             price: 1500,
         },
-        {   
+        {
             image: Package.Package6,
             fromLocation: "Yangon",
             toLocation: "London",
@@ -333,6 +333,21 @@ const TourPackage = () => {
                             </div>
                         </div>
                         <div className="ml-5 cards col-span-4">
+                            <div className="card-filter text-white flex justify-between mb-3">
+                                <div className="package-number">438 of 438 Packages</div>
+                                <div className="filter-dropdown">
+                                    <div>
+                                        <label htmlFor="filter-select">Sorted by</label>
+                                        <select className="bg-transparent focus:outline-0 font-bold" id="filter-select" value={selectedOption} onChange={handleSelectChange}>
+                                            {filterOptions.map((option) => (
+                                                <option className="bg-gray-800" key={option.value} value={option.value}>
+                                                    {option.label}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                             <div>
                                 {cardsData.map((card, index) => {
                                     // Calculate review level dynamically
@@ -345,8 +360,8 @@ const TourPackage = () => {
                                         reviewLevel = "Average";
                                     }
 
-                                    let fullStars = Math.floor(card.reviewPoint /2);
-                                    let halfStar = card.reviewPoint/2 - fullStars >= 0.5 ? 1 : 0;
+                                    let fullStars = Math.floor(card.reviewPoint / 2);
+                                    let halfStar = card.reviewPoint / 2 - fullStars >= 0.5 ? 1 : 0;
                                     let emptyStars = 5 - fullStars - halfStar;
 
                                     return (
