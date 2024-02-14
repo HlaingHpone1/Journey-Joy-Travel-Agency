@@ -126,6 +126,6 @@ import tourGuide from "../../assets/img/TourGuide.png";
 import airTicket from "../../assets/img/AirTicket.png";
 export const Icon = {
     Visa : visa,
-    tourGuide : tourGuide,
+    TourGuide : tourGuide,
     AirTicket : airTicket,
 }

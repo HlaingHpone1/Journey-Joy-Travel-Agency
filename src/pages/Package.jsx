@@ -2,6 +2,7 @@ import React from "react";
 import Banner from "../components/banner/Banner";
 import { Banner as ImgBanner, Icon } from "../components/img/Image";
 import { Package as Table } from "../components/package/Package";
+import Service from "../components/service/Service";
 
 const Package = () => {
 	return (
@@ -23,30 +24,10 @@ const Package = () => {
 							<p className="subTitle text-xl">Below are our Services</p>
 						</div>
 						<div className="service__packages flex justify-between">
-							<div className="service__package text-white text-center border p-5 rounded-[20px] w-[350px] ">
-								<div className="inner-box space-y-3">
-									<img className="block m-0 mx-auto" src={Icon.Visa} alt="This is visa icon" />
-									<div className="title">Visa</div>
-									<div className="text-justify">Lorem ipsum dolor sit amet consectetur. Enim nec faucibus tellus placerat sem maecenas. Eros nulla sollicitudin adipiscing orci nunc semper lorem pulvinar suspendisse.</div>
-									<button className="text-lg px-8 py-3 bg-tertiary font-medium text-black rounded-lg">Book Now</button>
-								</div>
-							</div>
-							<div className="service__package text-white text-center border p-5 rounded-[20px] w-[350px] ">
-								<div className="inner-box space-y-3">
-									<img className="block m-0 mx-auto" src={Icon.tourGuide} alt="This is visa icon" />
-									<div className="title">Visa</div>
-									<div className="text-justify">Lorem ipsum dolor sit amet consectetur. Enim nec faucibus tellus placerat sem maecenas. Eros nulla sollicitudin adipiscing orci nunc semper lorem pulvinar suspendisse.</div>
-									<button className="text-lg px-8 py-3 bg-tertiary font-medium text-black rounded-lg">Book Now</button>
-								</div>
-							</div>
-							<div className="service__package text-white text-center border p-5 rounded-[20px] w-[350px] ">
-								<div className="inner-box space-y-3">
-									<img className="block m-0 mx-auto" src={Icon.AirTicket} alt="This is visa icon" />
-									<div className="title">Visa</div>
-									<div className="text-justify">Lorem ipsum dolor sit amet consectetur. Enim nec faucibus tellus placerat sem maecenas. Eros nulla sollicitudin adipiscing orci nunc semper lorem pulvinar suspendisse.</div>
-									<button className="text-lg px-8 py-3 bg-tertiary font-medium text-black rounded-lg">Book Now</button>
-								</div>
-							</div>
+							<Service img={Icon.Visa} imgText="Visa" text="Lorem ipsum dolor sit amet consectetur. Enim nec faucibus tellus placerat sem maecenas. Eros nulla sollicitudin adipiscing orci nunc semper lorem pulvinar suspendisse." />
+							<Service img={Icon.TourGuide} imgText="Tour Guide" text="Lorem ipsum dolor sit amet consectetur. Enim nec faucibus tellus placerat sem maecenas. Eros nulla sollicitudin adipiscing orci nunc semper lorem pulvinar suspendisse." />
+							<Service img={Icon.AirTicket} imgText="Air Ticket" text="Lorem ipsum dolor sit amet consectetur. Enim nec faucibus tellus placerat sem maecenas. Eros nulla sollicitudin adipiscing orci nunc semper lorem pulvinar suspendisse." />
+
 						</div>
 					</div>
 				</div>

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Image } from '../components/img/Image'
 import { FaRegCirclePlay } from "react-icons/fa6";
+import ImageSlide from "../components/imgSlide/ImgSlide"
 
 const Index = () => {
 	return (
@@ -20,12 +21,12 @@ const Index = () => {
 						<p className="text-xl">Your Gateway to Unforgettable Journeys. Immerse yourself in our curated selection of top-rated adventures, where every destination tells a story and every experience is a chapter waiting to be written. At Popular Tours, we redefine travel by offering you the most sought-after destinations and captivating experiences. Let the allure of our popular tours be your guide, as we invite you to discover the world's wonders in style. Unearth extraordinary landscapes, delve into diverse cultures, and create lasting memories with Popular Tours – where popularity meets unparalleled exploration.</p>
 					</div>
 					<div className="flex gap-4 mb-24">
-						<img className='block hover:scale-110 transition-all duration-300 ease-linear' src={Image.Img1} alt="City" />
-						<img className='block hover:scale-110 transition-all duration-300 ease-linear' src={Image.Img2} alt="City" />
-						<img className='block hover:scale-110 transition-all duration-300 ease-linear' src={Image.Img3} alt="City" />
-						<img className='block hover:scale-110 transition-all duration-300 ease-linear' src={Image.Img4} alt="City" />
+						<ImageSlide img={Image.Img1} />
+						<ImageSlide img={Image.Img2} />
+						<ImageSlide img={Image.Img3} />
+						<ImageSlide img={Image.Img4} />
 					</div>
-					
+
 					<div className='video-and-text-wrapper flex space-x-10'>
 						<div className='text-white flex-1'>
 							<p className='text-6xl font-Roboto-Slab w-2/3 mb-20'>DISCOVER THE WORLD IN NEW WAY</p>
@@ -55,7 +56,7 @@ const Index = () => {
 								<iframe className="video-box w-full h-full" src="https://www.youtube.com/embed/r-iYbSqdcmI?si=E1gYP_7xQFecNeuy" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
 							</div>
 							<div className="video-box w-full h-full">
-							<iframe className="video-box w-full h-full" src="https://www.youtube.com/embed/NlPbdl5ahwg?si=Y5g7kGBj-TyFi3Mv" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+								<iframe className="video-box w-full h-full" src="https://www.youtube.com/embed/NlPbdl5ahwg?si=Y5g7kGBj-TyFi3Mv" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
 							</div>
 
 

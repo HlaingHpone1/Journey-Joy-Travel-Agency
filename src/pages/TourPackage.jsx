@@ -354,7 +354,7 @@ const TourPackage = () => {
                         </div>
                         <div className="ml-5 cards col-span-4">
                             <div className="card-filter text-white flex justify-between mb-3">
-                                <div className="package-number">438 of 438 Packages</div>
+                                <div className="package-number">{`${data.length} of ${cardsData.length} Packages`}</div>
                                 <div className="filter-dropdown">
                                     <div>
                                         <label htmlFor="filter-select">Sorted by</label>
