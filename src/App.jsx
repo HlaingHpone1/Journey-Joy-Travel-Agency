@@ -31,8 +31,8 @@ function App() {
 		<BrowserRouter>
 			<div className="font-Roboto">
 				<Navbar />
-				{/* <Router />
-				<Footer /> */}
+				<Router />
+				<Footer />
 			</div>
 
 		</BrowserRouter>

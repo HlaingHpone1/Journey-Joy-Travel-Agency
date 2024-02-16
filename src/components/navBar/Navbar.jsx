@@ -155,7 +155,7 @@ const Navbar = () => {
                         <NavLink className='bg-[#f6f6f6] lg:px-[25px] px-3 lg:py-[10px] py-1.5 font-bold lg:rounded-[10px] rounded-md font-Roboto-Slab hover:bg-secondary transition-colors duration-300 ease-linear hover:text-white' to="register">Register</NavLink>
                     </div>
                     <div className="menu-burger relative block lg:hidden">
-                        <button onClick={toggleState} className={` ${isMenuActive ? "after:rotate-45 before:-rotate-45 after:-translate-y-3 before:translate-y-2.5" : "bg-black"} transition-all duration-300 ease-linear before:transition-all before:duration-300 after:transition-all after:duration-300 flex icon  w-10 h-1  absolute  after:bg-teal-400  after:absolute after:top-3 after:w-10 after:h-1 before:absolute before:bg-red-500 before:-top-3 before:w-10 before:h-1 right-5`}></button>
+                        <button onClick={toggleState} className={` ${isMenuActive ? "after:rotate-45 before:-rotate-45 after:-translate-y-3 before:translate-y-2.5" : "bg-white"} transition-all duration-300 ease-linear before:transition-all before:duration-300 after:transition-all after:duration-300 flex icon  w-10 h-1  absolute  after:bg-white  after:absolute after:top-3 after:w-10 after:h-1 before:absolute before:bg-white before:-top-3 before:w-10 before:h-1 right-5`}></button>
                     </div>
                 </div>
             </div>

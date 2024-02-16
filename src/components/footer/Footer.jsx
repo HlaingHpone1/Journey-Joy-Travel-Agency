@@ -11,7 +11,7 @@ const Footer = () => {
 
         <div className="l-ft py-10 bg-gradient w-full">
             <div className="inner-wrap max-w-1240px my-0 mx-auto">
-                <div className="l-ft-content flex justify-between space-x-[100px] mb-20" >
+                <div className="l-ft-content flex flex-wrap justify-between  sm:flex-row flex-col sm:items-start items-center space-x-20 gap-y-10 mb-20" >
                     <div className="l-ft__link flex-1 ">
                         <p className="text-4xl font-bold font-Roboto-Slab capitalize text-white mb-6">Quick Link</p>
                         <div className="link">
@@ -59,7 +59,7 @@ const Footer = () => {
                 </div>
                 <hr className="mb-2.5" />
                 <div className="l-ft-bottom text-white">
-                    <address className="flex justify-between opacity-65">
+                    <address className="flex justify-between flex-wrap opacity-65">
                         <p className="copy-right"> &copy; Copy Right | All Right Reserved </p>
                         <div className="quick-link">
                             <ul className="flex space-x-4">
